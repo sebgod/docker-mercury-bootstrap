@@ -11,3 +11,4 @@ WORKDIR src
 RUN ./configure --enable-minimal-install 
 RUN make PARALLEL=${PARALLEL}
 RUN sudo make PARALLEL=${PARALLEL} install
+ENV PATH /usr/local/mercury-${MERCURY_VERSION}:$PATH
