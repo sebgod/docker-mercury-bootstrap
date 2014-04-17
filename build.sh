@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo docker build -t mercury-minimal-install - < Dockerfile
+sudo docker build -t sebgod/mercury-minimal-install - < Dockerfile
