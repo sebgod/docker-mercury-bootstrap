@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM debian:latest
 MAINTAINER Sebastian Godelet <sebastian.godelet+github@gmail.com>
 RUN apt-get update
 RUN apt-get install -y build-essential flex bison autoconf automake wget git
