@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo docker build -t sebgod/mercury-minimal-install:${1-latest} .
+sudo docker build -t sebgod/mercury-bootstrap:${1-latest} .

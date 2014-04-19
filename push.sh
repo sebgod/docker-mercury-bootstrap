@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo docker push sebgod/mercury-minimal-install:${1-latest}
+sudo docker push sebgod/mercury-bootstrap:${1-latest}
