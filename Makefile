@@ -5,9 +5,9 @@ THIS_MAKEFILE:=$(notdir $(THIS_MAKEFILE_PATH))
 
 USER=$(PARENT_DIR)
 REPO=mercury-bootstrap
-TAG=latest
-FQN=$(USER)/$(REPO):$(TAG)
 VERSION=rotd-2014-05-05
+TAG=$(VERSION)
+FQN=$(USER)/$(REPO):$(TAG)
 DOCKERFILE=Dockerfile
 
 .PHONY: build
