@@ -27,3 +27,8 @@ update:
 	sed -i 's/_VERSION .\+/_VERSION $(VERSION)/' $(DOCKERFILE)
 	sed -i 's/is: .\+/is: $(VERSION)/' README.md
 	( git add $(DOCKERFILE) README.md || git commit -m "Updated to Version $(VERSION)" ) || true
+
+.PHONY: help
+help: build
+	sudo docker run -v $(PWD):/data $(FQN) --help
+
