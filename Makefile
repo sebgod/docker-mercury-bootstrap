@@ -23,7 +23,7 @@ push: build
 	sudo docker push $(FQN)
 
 .PHONY: update
-update:
+update: build
 	sed -i 's/_VERSION .\+/_VERSION $(VERSION)/' $(DOCKERFILE)
 	sed -i 's/is: .\+/is: $(VERSION)/' README.md
 	git add $(DOCKERFILE) README.md
