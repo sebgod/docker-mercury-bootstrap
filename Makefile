@@ -7,10 +7,12 @@ USER=$(PARENT_DIR)
 REPO=mercury-bootstrap
 TAG=latest
 FQN=$(USER)/$(REPO):$(TAG)
+VERSION=rotd-2014-05-05
+DOCKERFILE=Dockerfile
 
 .PHONY: build
 build:
-	sudo docker build -t $(FQN) .
+	sudo docker build -t $(FQN) $(DOCKERFILE)
 
 .PHONY: pull
 pull:
@@ -19,3 +21,10 @@ pull:
 .PHONY: push
 push: build
 	sudo docker push $(FQN)
+
+.PHONY: update
+update:
+	sed -i 's/_VERSION .\+/_VERSION $(VERSION)/' $(DOCKERFILE)
+	sed -i 's/is: .\+/is: $(VERSION)/' README.md
+	git add $(DOCKERFILE) README.md
+	git commit -m "Updated to Version $(VERSION)"
