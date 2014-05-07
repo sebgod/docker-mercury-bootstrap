@@ -11,7 +11,7 @@ FQN=$(USER)/$(REPO):$(TAG)
 DOCKERFILE=Dockerfile
 
 .PHONY: build
-build:
+build: update
 	sudo docker build -t $(FQN) - < $(DOCKERFILE)
 
 .PHONY: pull
@@ -23,8 +23,7 @@ push: build
 	sudo docker push $(FQN)
 
 .PHONY: update
-update: build
+update:
 	sed -i 's/_VERSION .\+/_VERSION $(VERSION)/' $(DOCKERFILE)
 	sed -i 's/is: .\+/is: $(VERSION)/' README.md
-	git add $(DOCKERFILE) README.md
-	git commit -m "Updated to Version $(VERSION)"
+	( git add $(DOCKERFILE) README.md || git commit -m "Updated to Version $(VERSION)" ) || true
