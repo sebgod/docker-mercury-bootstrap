@@ -1,7 +1,5 @@
-FROM dockerfile/java
+FROM sebgod/trusty-build-essential
 MAINTAINER Sebastian Godelet <sebastian.godelet+github@gmail.com>
-RUN apt-get update
-RUN apt-get install -y build-essential flex bison autoconf automake wget git curl
 ENV MERCURY_BOOTSTRAP_VERSION rotd-2014-05-05
 ENV PARALLEL -j4
 RUN mkdir -p bootstrap-src && ls -la && curl -s -L http://dl.mercurylang.org/rotd/mercury-srcdist-${MERCURY_BOOTSTRAP_VERSION}.tar.gz | tar -xzf - -C bootstrap-src --strip 1
