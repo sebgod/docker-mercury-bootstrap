@@ -12,7 +12,7 @@ DOCKERFILE=Dockerfile
 
 .PHONY: build
 build:
-	sudo docker build -t $(FQN) $(DOCKERFILE)
+	sudo docker build -t $(FQN) - < $(DOCKERFILE)
 
 .PHONY: pull
 pull:
