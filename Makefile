@@ -5,22 +5,22 @@ THIS_MAKEFILE:=$(notdir $(THIS_MAKEFILE_PATH))
 
 USER=$(PARENT_DIR)
 REPO=mercury-bootstrap
-VERSION=rotd-2014-05-05
+VERSION=rotd-2014-04-24
 TAG=$(VERSION)
 FQN=$(USER)/$(REPO):$(TAG)
 DOCKERFILE=Dockerfile
 
 .PHONY: build
 build: update
-	sudo docker build -t $(FQN) - < $(DOCKERFILE)
+	docker build -t $(FQN) - < $(DOCKERFILE)
 
 .PHONY: pull
 pull:
-	sudo docker pull $(FQN)
+	docker pull $(FQN)
 
 .PHONY: push
 push: build
-	sudo docker push $(FQN)
+	docker push $(FQN)
 
 .PHONY: update
 update:
@@ -30,5 +30,5 @@ update:
 
 .PHONY: help
 help: build
-	sudo docker run -v $(PWD):/data $(FQN) --help
+	docker run -v $(PWD):/data $(FQN) --help
 
