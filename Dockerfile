@@ -1,14 +1,17 @@
 FROM sebgod/mercury-depend:latest
 MAINTAINER Sebastian Godelet <sebastian.godelet@outlook.com>
-ENV MERCURY_BOOTSTRAP_VERSION rotd-2015-04-24
-ENV MERCURY_BASE_URL http://dl.mercurylang.org
-ENV MERCURY_BOOTSTRAP_URL ${MERCURY_BASE_URL}/rotd/mercury-srcdist-${MERCURY_BOOTSTRAP_VERSION}.tar.gz
+ENV MERCURY_BOOTSTRAP_VERSION 14.01.2-beta-2015-02-18
+ENV MERCURY_SRCDIST http://dl.mercurylang.org/release/mercury-srcdist-
+ENV MERCURY_BOOTSTRAP_URL ${MERCURY_SRCDIST}${MERCURY_BOOTSTRAP_VERSION}.tar.gz
+ENV MERCURY_BOOTSTRAP_PREFIX /usr/local/mercury-bootstrap
 ENV PATH_ORIG $PATH
-ENV PATH /usr/local/mercury-${MERCURY_BOOTSTRAP_VERSION}/bin:$PATH_ORIG
-WORKDIR /tmp
+ENV PATH ${MERCURY_BOOTSTRAP_PREFIX}/bin:$PATH_ORIG
+RUN mkdir -p /tmp/mercury
+WORKDIR /tmp/mercury
 RUN ( curl -s -L -N $MERCURY_BOOTSTRAP_URL | tar xz --strip 1 ) \
     && sh configure --enable-minimal-install \
         --enable-new-mercuryfile-struct \
+        --prefix=${MERCURY_BOOTSTRAP_PREFIX} \
     && make \
     && make install \
     && make realclean \
@@ -18,5 +21,5 @@ RUN ( curl -s -L -N $MERCURY_BOOTSTRAP_URL | tar xz --strip 1 ) \
         --enable-new-mercuryfile-struct \
     && make \
     && make install \
-    && make realclean
+    && rm -fR *
 ENTRYPOINT ["mmc"]
