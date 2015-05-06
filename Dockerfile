@@ -15,12 +15,5 @@ RUN ( curl -s -L -N $MERCURY_BOOTSTRAP_URL | tar xz --strip 1 ) \
         --prefix=${MERCURY_BOOTSTRAP_PREFIX} \
     && make \
     && make install \
-    && make realclean \
-    && aclocal -Im4 \
-    && autoconf \
-    && sh configure --enable-libgrades=asm_fast.gc \
-        --enable-new-mercuryfile-struct \
-    && make \
-    && make install \
     && rm -fR *
 ENTRYPOINT ["mmc"]
