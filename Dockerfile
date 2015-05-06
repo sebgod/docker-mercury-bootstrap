@@ -10,7 +10,7 @@ ENV MERCURY_BOOTSTRAP_PREFIX /usr/local/mercury-bootstrap
 ENV PATH_ORIG $PATH
 ENV PATH ${MERCURY_BOOTSTRAP_PREFIX}/bin:$PATH_ORIG
 WORKDIR /tmp/mercury
-RUN tar xzf --strip 1 /tmp/tarballs/$MERCURY_BOOTSTRAP_TARGZ \
+RUN tar --strip 1 -x -v -f /tmp/tarballs/$MERCURY_BOOTSTRAP_TARGZ \
     && sh configure --enable-minimal-install \
         --enable-new-mercuryfile-struct \
         --prefix=$MERCURY_BOOTSTRAP_PREFIX \
