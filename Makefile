@@ -26,7 +26,8 @@ push: build
 update:
 	sed -i 's/_VERSION .\+/_VERSION $(VERSION)/' $(DOCKERFILE)
 	sed -i 's/is: .\+/is: $(VERSION)/' README.md
-	( git add $(DOCKERFILE) README.md || git commit -m "Updated to Version $(VERSION)" ) || true
+	sed -i 's/^VERSION=.\+$$/VERSION=$(VERSION)/' Makefile
+	( git add $(DOCKERFILE) README.md Makefile && git commit -m "Updated to Version $(VERSION)" ) || true
 
 .PHONY: help
 help: build
