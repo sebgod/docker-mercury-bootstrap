@@ -1,6 +1,5 @@
 # vim: ft=dockerfile tw=78 ts=4 sw=4 et
 FROM sebgod/mercury-depend:latest
-MAINTAINER Sebastian Godelet <sebastian.godelet@outlook.com>
 ENV MERCURY_TMP /var/tmp
 RUN mkdir -p $MERCURY_TMP/tarballs
 RUN mkdir -p $MERCURY_TMP/mercury
@@ -16,9 +15,9 @@ WORKDIR $MERCURY_TMP/mercury
 RUN tar --strip 1 -x -f $MERCURY_TMP/tarballs/$MERCURY_BOOTSTRAP_TARGZ \
     && (sh configure --enable-minimal-install \
             --enable-new-mercuryfile-struct \
-            --prefix=$MERCURY_BOOTSTRAP_PREFIX > build.log \
-        && make >> build.log \
-        && make install >> build.log \
+            --prefix=$MERCURY_BOOTSTRAP_PREFIX > build.log 2>&1 \
+        && make >> build.log 2>&1 \
+        && make install >> build.log 2>&1 \
         && rm -fR * \
         ) || (cat build.log & false)
 ENTRYPOINT ["mmc"]
