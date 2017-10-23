@@ -1,8 +1,8 @@
 # vim: ft=dockerfile tw=78 ts=4 sw=4 et
-FROM sebgod/mercury-depend-essential:latest
+FROM sebgod/mercury-depend-essential:alpine
 ENV MERCURY_TMP /var/tmp
-ENV MERCURY_DOWNLOAD_URL http://dl.mercurylang.org
-ENV MERCURY_BOOTSTRAP_VERSION 2017-10-19
+ARG MERCURY_DOWNLOAD_URL=http://dl.mercurylang.org
+ARG MERCURY_BOOTSTRAP_VERSION=2017-10-19
 ENV MERCURY_BOOTSTRAP_TARGZ mercury-srcdist-rotd-${MERCURY_BOOTSTRAP_VERSION}.tar.gz
 ENV MERCURY_BOOTSTRAP_PREFIX /usr/local/mercury-bootstrap
 ENV PATH_ORIG $PATH
