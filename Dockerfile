@@ -1,5 +1,5 @@
 # vim: ft=dockerfile tw=78 ts=4 sw=4 et
-FROM sebgod/mercury-depend-sebgod/mercury-depend-essential:latest
+FROM sebgod/mercury-depend-essential:latest
 ENV MERCURY_TMP /var/tmp
 ENV MERCURY_DOWNLOAD_URL http://dl.mercurylang.org
 ENV MERCURY_BOOTSTRAP_VERSION 2017-10-19
